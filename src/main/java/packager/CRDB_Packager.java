@@ -5,7 +5,7 @@ import org.jpos.iso.*;
 public class CRDB_Packager extends ISOBasePackager {
     private static final boolean pad = false;
     protected ISOFieldPackager fld[] = {
-        /*000*/ new IFB_BINARY ( 2, "Message Type Indicator"),
+        /*000*/ new IFB_BINARY ( 4, "Message Type Indicator"),
         /*001*/ new IFB_BITMAP( 8, "Bitmap"),
         /*002*/ new IFB_LLNUM ( 19, "Primary Account number", pad),
         /*003*/ new IFB_NUMERIC ( 6, "Processing Code", pad),
@@ -14,7 +14,7 @@ public class CRDB_Packager extends ISOBasePackager {
         /*006*/ new IFB_NUMERIC ( 12, "Amount, Cardholder billing", pad),
         /*007*/ new IFB_NUMERIC ( 10, "Date and time, transmission", pad),
         /*008*/ new IFB_NUMERIC ( 8, "Amount, Cardholder billing fee", pad),
-        /*009*/ new IFA_LLLCHAR(999, "Posiris data"),
+        /*009*/ new IFA_LLLCHAR (999, "Posiris data"),
         /*010*/ new IFB_NUMERIC ( 8, "Conversion rate, Cardholder billing", pad),
         /*011*/ new IFB_NUMERIC ( 6, "Systems trace audit number", pad),
         /*012*/ new IFB_NUMERIC ( 12, "Date and time, Local transaction", pad),
@@ -135,4 +135,9 @@ public class CRDB_Packager extends ISOBasePackager {
         /*127*/ new IFB_LLLCHAR(999, "Reserved for private use"),
         /*128*/ new IFB_BINARY( 8, "Message authentication code field")
     };
+
+    public CRDB_Packager() {
+        super();
+        setFieldPackager(fld);
+    }
 }

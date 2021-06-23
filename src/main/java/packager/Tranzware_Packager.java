@@ -11,7 +11,7 @@ import org.jpos.iso.*;
 public class Tranzware_Packager extends ISOBasePackager {
     //  private static final boolean pad = false;
     protected ISOFieldPackager fld[] = {
-            /*000*/ new IFB_BINARY(  2, "Message Type Indicator"),
+            /*000*/ new IFB_BINARY(  4, "Message Type Indicator"),
             /*001*/ new IFB_BITMAP( 8, "Bitmap"),
             /*002*/ new IFA_LLNUM  ( 19, "Primary Account number"),
             /*003*/ new IFB_BINARY (  3, "Processing Code"),
@@ -20,7 +20,7 @@ public class Tranzware_Packager extends ISOBasePackager {
             /*006*/ new IFA_NUMERIC ( 12, "Amount, Cardholder billing"),
             /*007*/ new IFA_NUMERIC ( 10, "Date and time, transmission"),
             /*008*/ new IFA_NUMERIC (  8, "Amount, Cardholder billing fee"),
-            /*009*/ new IFA_NUMERIC (  8, "Conversion rate, Reconciliation"),
+            /*009*/ new IFA_LLLCHAR (  999, "Conversion rate, Reconciliation"),
             /*010*/ new IFA_NUMERIC (  8, "Conversion rate, Cardholder billing"),
             /*011*/ new IFB_BINARY (  3, "Systems trace audit number"),
             /*012*/ new IFA_NUMERIC ( 6, "Date and time, Local transaction"),

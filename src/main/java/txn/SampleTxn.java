@@ -16,8 +16,9 @@ public class SampleTxn {
 
         Logger logger = new Logger();
         logger.addListener((LogListener) new SimpleLogListener(System.out));
+//        PostChannel channel = new PostChannel((ISOPackager) new Tranzware_Packager());
         PostChannel channel = new PostChannel((ISOPackager) new CRDB_Packager());
-//        channel.setHeader("6004003800");
+        channel.setHeader("6004003800");
 
         ((LogSource) channel).setLogger(logger, "Test gateway");
         ThreadPool serverPool = new ThreadPool(10, 1000);
@@ -28,6 +29,7 @@ public class SampleTxn {
         server.addISORequestListener((source, m) -> {
             m.dump(System.out, "incoming message");
             try {
+//                m.setMTI(m.getMTI().substring(0, 2).concat("10"));
                 m.set(39, "00");
                 source.send(m);
             } catch (ISOException | IOException e) {
